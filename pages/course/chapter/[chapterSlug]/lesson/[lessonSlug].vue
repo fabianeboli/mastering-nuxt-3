@@ -52,7 +52,7 @@ const toggleComplete = () => {
       <VideoPlayer v-if="lesson?.videoId" :video-id="lesson.videoId" />
     </div>
     <p>{{ lesson.text }}</p>
-    <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="toggleComplete" />
+    <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="throw createError('Could not update');" />
 
   </div>
 </template>

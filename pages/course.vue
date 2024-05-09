@@ -1,9 +1,12 @@
 <script setup lang='ts'>
 const { chapters } = useCourse();
+// definePageMeta({
+// 	layout: 'custom',
+// })
 </script>
 
 <template>
-	<div class="flex flex-col items-center w-full h-full min-h-screen p-12 bg-blue-500">
+	
 		<div class="mb-12 prose">
 			<h1>
 				<span class="font-medium">
@@ -29,11 +32,17 @@ const { chapters } = useCourse();
 			</div>
 
 			<div class="prose p-12 bg-white rounded-md w-[65ch] ">
-				This is a lesson
-				<NuxtPage />
+				<NuxtErrorBoundary>
+					<NuxtPage />
+					<template #error="{error}">
+						<p>
+							Oh no, somethign broke!
+							<code>{{ error }}</code>
+						</p>
+					</template>
+				</NuxtErrorBoundary>
 			</div>
 		</div>
-	</div>
 </template>
 
 <style scoped>
