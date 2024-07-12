@@ -1,10 +1,10 @@
+<script setup lang='ts'>
+const firstLesson = useFirstLesson();
+</script>
 <template>
   <div>
-    Index page
-    <!-- <NuxtLink to="/course">
-    <button>
-        To course
-      </button>
-    </NuxtLink> -->
+    <NuxtLink class="underline font-medium" :href="firstLesson.path">
+        Go to first lesson
+    </NuxtLink>
   </div>
 </template>

@@ -1,17 +1,23 @@
 <script setup lang='ts'>
-const { chapters } = useCourse();
+const { chapters, title } = useCourse();
 // definePageMeta({
 // 	layout: 'custom',
 // })
+
+const resetError = async (error) => {
+	// await navigateTo('/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3');
+	// error.value = null;
+	throw createError({ fatal: true, message: "Fatal error" })
+}
 </script>
 
 <template>
-	
+	<div>
 		<div class="mb-12 prose">
 			<h1>
 				<span class="font-medium">
 					Course:
-					<span class="font-bold">Mastering Nuxt 3</span>
+					<span class="font-bold"> {{ title }}</span>
 				</span>
 			</h1>
 		</div>
@@ -34,20 +40,22 @@ const { chapters } = useCourse();
 			<div class="prose p-12 bg-white rounded-md w-[65ch] ">
 				<NuxtErrorBoundary>
 					<NuxtPage />
-					<template #error="{error}">
+					<template #error="{ error }">
 						<p>
 							Oh no, somethign broke!
 							<code>{{ error }}</code>
+							<button class="hover:cursor-pointer bg-gray-500 text-white font-bold px-3 py-1 rounded-sm"
+								@click="resetError(error)"> Reset</button>
 						</p>
 					</template>
 				</NuxtErrorBoundary>
 			</div>
 		</div>
+	</div>
 </template>
 
 <style scoped>
 /* .router-link-active {
 	@apply text-blue-500;
 } */
-
 </style>
